@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.sql.*;
 
 @RestController
-public class HelloController
+public class StockChartsController
 {
     static Connection connection = null;
 
@@ -77,18 +77,6 @@ public class HelloController
         } else {
             retVal = -3;
         }
-
-//        try
-//        {
-//            connection.close();
-//        }
-//        catch(Exception e)
-//        {
-//            if (retVal > 0)
-//                retVal = -4;
-//            else
-//                retVal = -5;
-//        }
 
         return retVal;
     }
