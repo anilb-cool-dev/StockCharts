@@ -1,4 +1,4 @@
-package hello;
+package StockCharts;
 
 import java.util.Arrays;
 
