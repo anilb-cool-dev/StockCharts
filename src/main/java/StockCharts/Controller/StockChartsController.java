@@ -1,11 +1,11 @@
 package StockCharts.Controller;
 
 import StockCharts.Model.Price;
-import StockCharts.Util.PriceUtil;
+import StockCharts.Service.StockChartsService;
 
 import StockCharts.Model.Purchase;
-import StockCharts.Util.PurchaseUtil;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RestController
 public class StockChartsController
 {
+    @Autowired
+    private StockChartsService service;
+
     @RequestMapping("/")
     public String index()
     {
@@ -21,13 +24,13 @@ public class StockChartsController
 
     @RequestMapping("/priceHistory")
     public ResponseEntity<Price[]> priceHistory() {
-        Price[] prices = PriceUtil.getPrices();
+        Price[] prices = service.getPrices();
         return ResponseEntity.ok(prices);
     }
 
     @RequestMapping("/purchaseHistory")
     public ResponseEntity<Purchase[]> purchaseHistory() {
-        Purchase[] purchases = PurchaseUtil.getPurchases();
+        Purchase[] purchases = service.getPurchases();
         return ResponseEntity.ok(purchases);
     }
 }
