@@ -1,9 +1,6 @@
 package StockCharts.Controller;
 
-import StockCharts.Model.Price;
 import StockCharts.Service.StockChartsService;
-
-import StockCharts.Model.Purchase;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,13 +22,15 @@ public class StockChartsController
     }
 
     @RequestMapping("/priceHistory")
-    public ResponseEntity<ArrayList> priceHistory() {
+    public ResponseEntity<ArrayList> priceHistory()
+    {
         ArrayList prices = service.getPrices();
         return ResponseEntity.ok(prices);
     }
 
     @RequestMapping("/purchaseHistory")
-    public ResponseEntity<ArrayList> purchaseHistory() {
+    public ResponseEntity<ArrayList> purchaseHistory()
+    {
         ArrayList purchases = service.getPurchases();
         return ResponseEntity.ok(purchases);
     }

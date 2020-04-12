@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 @Service
-public class StockChartsService {
+public class StockChartsService
+{
     public static ArrayList getPrices()
     {
         ArrayList prices = new ArrayList();
