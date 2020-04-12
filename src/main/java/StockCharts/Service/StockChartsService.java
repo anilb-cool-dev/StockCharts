@@ -2,41 +2,76 @@ package StockCharts.Service;
 
 import StockCharts.Model.Price;
 import StockCharts.Model.Purchase;
+import StockCharts.Util.ConnectionUtil;
 import org.springframework.stereotype.Service;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
 
 @Service
 public class StockChartsService {
-    public static Price[] getPrices()
+    public static ArrayList getPrices()
     {
-        Price price;
-        Price[] Prices = new Price[2];
+        ArrayList prices = new ArrayList();
 
-        price = new Price();
-        price.date = new Date();
-        price.ticker = "GOOG";
-        price.price = 23.19;
-        Prices[0] = price;
+        try
+        {
+            Connection connection = ConnectionUtil.establishConnection();
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("select ticker, date, price from price_history");
 
-        price = new Price();
-        price.date = new Date();
-        price.ticker = "MSFT";
-        price.price = 100.01;
-        Prices[1] = price;
+            while (rs.next())
+            {
+                Price price = new Price();
 
-        return Prices;
+                price.ticker = rs.getString("ticker");
+                price.date = rs.getDate("date");
+                price.price = rs.getDouble("price");
+
+                prices.add(price);
+            }
+
+            rs.close();
+            statement.close();
+            connection.close();
+        }
+        catch(Exception e)
+        {
+        }
+
+        return prices;
     }
 
-    public static Purchase[] getPurchases()
+    public static ArrayList getPurchases()
     {
-        Purchase purchase;
-        Purchase[] purchases = new Purchase[1];
+        ArrayList purchases = new ArrayList();
 
-        purchase = new Purchase();
-        purchase.date = new Date();
-        purchase.ticker = "GOOG";
-        purchases[0] = purchase;
+        try
+        {
+            Connection connection = ConnectionUtil.establishConnection();
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("select ticker, date from purchase_history");
+
+            while (rs.next())
+            {
+                Purchase purchase = new Purchase();
+
+                purchase.ticker = rs.getString("ticker");
+                purchase.date = rs.getDate("date");
+
+                purchases.add(purchase);
+            }
+
+            rs.close();
+            statement.close();
+            connection.close();
+        }
+        catch(Exception e)
+        {
+        }
 
         return purchases;
     }

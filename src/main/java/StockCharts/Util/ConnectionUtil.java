@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-class ConnectionUtil {
-    static Connection establishConnection()
+public class ConnectionUtil {
+    public static Connection establishConnection()
     {
         Connection connection = null;
         int retVal;

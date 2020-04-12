@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
+
 @RestController
 public class StockChartsController
 {
@@ -23,14 +25,14 @@ public class StockChartsController
     }
 
     @RequestMapping("/priceHistory")
-    public ResponseEntity<Price[]> priceHistory() {
-        Price[] prices = service.getPrices();
+    public ResponseEntity<ArrayList> priceHistory() {
+        ArrayList prices = service.getPrices();
         return ResponseEntity.ok(prices);
     }
 
     @RequestMapping("/purchaseHistory")
-    public ResponseEntity<Purchase[]> purchaseHistory() {
-        Purchase[] purchases = service.getPurchases();
+    public ResponseEntity<ArrayList> purchaseHistory() {
+        ArrayList purchases = service.getPurchases();
         return ResponseEntity.ok(purchases);
     }
 }
