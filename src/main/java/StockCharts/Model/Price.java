@@ -1,4 +1,4 @@
-package StockCharts.BusinessObject;
+package StockCharts.Model;
 
 import java.util.Date;
 

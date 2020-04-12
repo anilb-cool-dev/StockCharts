@@ -1,11 +1,11 @@
-package StockCharts;
+package StockCharts.Util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class ConnectionUtil {
-    public static Connection establishConnection()
+class ConnectionUtil {
+    static Connection establishConnection()
     {
         Connection connection = null;
         int retVal;

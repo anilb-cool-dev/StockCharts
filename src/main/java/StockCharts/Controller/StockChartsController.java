@@ -1,11 +1,10 @@
-package StockCharts;
+package StockCharts.Controller;
 
-import org.springframework.http.HttpStatus;
+import StockCharts.Model.Price;
+import StockCharts.Util.PriceUtil;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.sql.*;
 
 @RestController
 public class StockChartsController
@@ -17,8 +16,8 @@ public class StockChartsController
     }
 
     @RequestMapping("/priceHistory")
-    public Price[] priceHistory() {
-        Price prices[] = PriceUtil.getPrices();
-        return prices;
+    public ResponseEntity<Price[]> priceHistory() {
+        Price[] prices = PriceUtil.getPrices();
+        return ResponseEntity.ok(prices);
     }
 }

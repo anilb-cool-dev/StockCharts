@@ -1,4 +1,6 @@
-package StockCharts;
+package StockCharts.Util;
+
+import StockCharts.Model.Price;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -8,13 +10,20 @@ import java.util.Date;
 public class PriceUtil {
     public static Price[] getPrices()
     {
-        Price price = new Price();
+        Price price;
+        Price[] Prices = new Price[2];
+
+        price = new Price();
         price.date = new Date();
         price.ticker = "GOOG";
         price.price = 23.19;
-
-        Price[] Prices = new Price[1];
         Prices[0] = price;
+
+        price = new Price();
+        price.date = new Date();
+        price.ticker = "MSFT";
+        price.price = 100.01;
+        Prices[1] = price;
 
         return Prices;
     }

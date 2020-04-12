@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.springframework</groupId>
-    <artifactId>gs-spring-boot</artifactId>
+    <artifactId>StockCharts</artifactId>
     <version>0.1.0</version>
 
     <parent>
@@ -39,5 +39,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
