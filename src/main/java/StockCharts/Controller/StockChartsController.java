@@ -4,6 +4,7 @@ import StockCharts.Service.StockChartsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -21,10 +22,10 @@ public class StockChartsController
         return "index";
     }
 
-    @RequestMapping("/priceHistory")
-    public ResponseEntity<ArrayList> priceHistory()
+    @RequestMapping("/priceHistory/{ticker}")
+    public ResponseEntity<ArrayList> priceHistory(@PathVariable String ticker)
     {
-        ArrayList prices = service.getPrices();
+        ArrayList prices = service.getPrices(ticker);
         return ResponseEntity.ok(prices);
     }
 

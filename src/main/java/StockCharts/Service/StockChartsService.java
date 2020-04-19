@@ -9,12 +9,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 
 @Service
 public class StockChartsService
 {
-    public static ArrayList getPrices()
+    public static ArrayList getPrices(String ticker)
     {
         ArrayList prices = new ArrayList();
 
@@ -22,13 +21,12 @@ public class StockChartsService
         {
             Connection connection = ConnectionUtil.establishConnection();
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select ticker, date, price from price_history");
+            ResultSet rs = statement.executeQuery("select date, price from price_history where ticker = '" + ticker + "'");
 
             while (rs.next())
             {
                 Price price = new Price();
 
-                price.ticker = rs.getString("ticker");
                 price.date = rs.getDate("date");
                 price.price = rs.getDouble("price");
 
