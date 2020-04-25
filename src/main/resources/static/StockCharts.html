@@ -1,0 +1,78 @@
+ <html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart()
+      {
+        var jsonData = $.ajax({
+          url: "http://ec2-54-191-143-170.us-west-2.compute.amazonaws.com:8080/priceHistory/AMZN",
+          dataType: "json",
+          async: false
+          }).responseJSON;
+
+        var price_history = [];
+
+        var header = [];
+        header.push('date');
+        header.push('price');
+        header.push({'type': 'string', 'role': 'style'});
+        price_history.push(header);
+
+        var element1 = [];
+        element1.push(jsonData[0].date);
+        element1.push(jsonData[0].price);
+        element1.push(null);
+        price_history.push(element1);
+
+        var element2 = [];
+        element2.push(jsonData[1].date);
+        element2.push(jsonData[1].price);
+        element2.push(null);
+        price_history.push(element2);
+
+        var element3 = [];
+        element3.push(jsonData[2].date);
+        element3.push(jsonData[2].price);
+        element3.push(null);
+        price_history.push(element3);
+
+        var element4 = [];
+        element4.push(jsonData[3].date);
+        element4.push(jsonData[3].price);
+        element4.push(null);
+        price_history.push(element4);
+
+        var element5 = [];
+        element5.push(jsonData[4].date);
+        element5.push(jsonData[4].price);
+        element5.push(null);
+        price_history.push(element5);
+
+        var element6 = [];
+        element6.push(jsonData[5].date);
+        element6.push(jsonData[5].price);
+        element6.push(null);
+        price_history.push(element6);
+
+        var data = google.visualization.arrayToDataTable(price_history);
+
+        var options = {
+          curveType: 'function',
+          pointSize: 7,
+          dataOpacity: 0.3
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="curve_chart" style="width: 900px; height: 500px"></div>
+  </body>
+</html>
