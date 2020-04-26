@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 
 @Service
 public class StockChartsService
@@ -44,7 +45,7 @@ public class StockChartsService
         return prices;
     }
 
-    public static ArrayList getPurchases()
+    public static ArrayList getPurchases(String ticker)
     {
         ArrayList purchases = new ArrayList();
 
@@ -52,16 +53,12 @@ public class StockChartsService
         {
             Connection connection = ConnectionUtil.establishConnection();
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select ticker, date from purchase_history");
+            ResultSet rs = statement.executeQuery("select date from purchase_history where ticker = '" + ticker + "'");
 
             while (rs.next())
             {
-                Purchase purchase = new Purchase();
-
-                purchase.ticker = rs.getString("ticker");
-                purchase.date = rs.getDate("date");
-
-                purchases.add(purchase);
+                Date date = rs.getDate("date");
+                purchases.add(date);
             }
 
             rs.close();

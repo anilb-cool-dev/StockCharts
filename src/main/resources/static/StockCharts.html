@@ -14,6 +14,12 @@
           async: false
           }).responseJSON;
 
+        var jsonData1 = $.ajax({
+          url: "http://ec2-54-191-143-170.us-west-2.compute.amazonaws.com:8080/purchaseHistory/AMZN",
+          dataType: "json",
+          async: false
+          }).responseJSON;
+
         var price_history = [];
 
         var header = [];
@@ -22,41 +28,26 @@
         header.push({'type': 'string', 'role': 'style'});
         price_history.push(header);
 
-        var element1 = [];
-        element1.push(jsonData[0].date);
-        element1.push(jsonData[0].price);
-        element1.push(null);
-        price_history.push(element1);
+        for (var index=0; index < jsonData.length; index++)
+        {
+                var element = [];
 
-        var element2 = [];
-        element2.push(jsonData[1].date);
-        element2.push(jsonData[1].price);
-        element2.push(null);
-        price_history.push(element2);
+                var date = jsonData[index].date;
+                element.push(date);
 
-        var element3 = [];
-        element3.push(jsonData[2].date);
-        element3.push(jsonData[2].price);
-        element3.push(null);
-        price_history.push(element3);
+                element.push(jsonData[index].price);
 
-        var element4 = [];
-        element4.push(jsonData[3].date);
-        element4.push(jsonData[3].price);
-        element4.push(null);
-        price_history.push(element4);
+                if (jsonData1.includes(date))
+                {
+                  element.push('point {size: 18; shape-type: star; fill-color: #a52714;}');
+                }
+                else
+                {
+                  element.push(null);
+                }
 
-        var element5 = [];
-        element5.push(jsonData[4].date);
-        element5.push(jsonData[4].price);
-        element5.push(null);
-        price_history.push(element5);
-
-        var element6 = [];
-        element6.push(jsonData[5].date);
-        element6.push(jsonData[5].price);
-        element6.push(null);
-        price_history.push(element6);
+                price_history.push(element);
+        }
 
         var data = google.visualization.arrayToDataTable(price_history);
 
