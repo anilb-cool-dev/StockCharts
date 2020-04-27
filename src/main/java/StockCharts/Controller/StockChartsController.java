@@ -45,4 +45,12 @@ public class StockChartsController
 
         return new ResponseEntity<>(purchases, headers, HttpStatus.OK);
     }
+
+    @RequestMapping("/refresh/{ticker}")
+    public ResponseEntity<Boolean> refresh(@PathVariable String ticker)
+    {
+        boolean status = service.refresh(ticker);
+
+        return ResponseEntity.ok(Boolean.valueOf(status));
+    }
 }

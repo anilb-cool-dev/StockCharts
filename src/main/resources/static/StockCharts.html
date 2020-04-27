@@ -9,13 +9,13 @@
       function drawChart()
       {
         var jsonData = $.ajax({
-          url: "http://ec2-54-191-143-170.us-west-2.compute.amazonaws.com:8080/priceHistory/AMZN",
+          url: "http://ec2-34-208-229-103.us-west-2.compute.amazonaws.com:8080/priceHistory/AMZN",
           dataType: "json",
           async: false
           }).responseJSON;
 
         var jsonData1 = $.ajax({
-          url: "http://ec2-54-191-143-170.us-west-2.compute.amazonaws.com:8080/purchaseHistory/AMZN",
+          url: "http://ec2-34-208-229-103.us-west-2.compute.amazonaws.com:8080/purchaseHistory/AMZN",
           dataType: "json",
           async: false
           }).responseJSON;

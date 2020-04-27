@@ -1,9 +1,13 @@
 package StockCharts.Service;
 
+import StockCharts.Model.HistoricalPrice;
 import StockCharts.Model.Price;
-import StockCharts.Model.Purchase;
+import StockCharts.Model.StockPriceAPIResponse;
 import StockCharts.Util.ConnectionUtil;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -70,5 +74,18 @@ public class StockChartsService
         }
 
         return purchases;
+    }
+
+    public boolean refresh(String ticker)
+    {
+        String url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={ticker}&apikey=8AA2U02KXGQDXKB2";
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        StockPriceAPIResponse stockPriceAPIResponse = restTemplate.getForObject(url, StockPriceAPIResponse.class, ticker);
+
+        //stockPriceAPIResponse.getTimeSeriesDaily().getAdditionalProperties().forEach(<n> -> );
+
+        return false;
     }
 }
