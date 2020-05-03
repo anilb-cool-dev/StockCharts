@@ -12,8 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.*;
 
 @Service
 public class StockChartsService
@@ -26,7 +25,7 @@ public class StockChartsService
         {
             Connection connection = ConnectionUtil.establishConnection();
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select date, price from price_history where ticker = '" + ticker + "'");
+            ResultSet rs = statement.executeQuery("select date, price from price_history where ticker = '" + ticker + "' order by date");
 
             while (rs.next())
             {
@@ -57,7 +56,7 @@ public class StockChartsService
         {
             Connection connection = ConnectionUtil.establishConnection();
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select date from purchase_history where ticker = '" + ticker + "'");
+            ResultSet rs = statement.executeQuery("select date from purchase_history where ticker = '" + ticker + "' order by date");
 
             while (rs.next())
             {
@@ -78,14 +77,37 @@ public class StockChartsService
 
     public boolean refresh(String ticker)
     {
+        boolean response = false;
+
         String url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={ticker}&apikey=8AA2U02KXGQDXKB2";
 
         RestTemplate restTemplate = new RestTemplate();
 
         StockPriceAPIResponse stockPriceAPIResponse = restTemplate.getForObject(url, StockPriceAPIResponse.class, ticker);
 
-        //stockPriceAPIResponse.getTimeSeriesDaily().getAdditionalProperties().forEach(<n> -> );
+        if (stockPriceAPIResponse != null)
+        {
+            for (Map.Entry<String, Object> entry : stockPriceAPIResponse.getTimeSeriesDaily().getAdditionalProperties().entrySet())
+            {
+                String date = entry.getKey();
+                Map map = (Map) entry.getValue();
+                String close = (String) map.get("4. close");
 
-        return false;
+                try
+                {
+                    Connection connection = ConnectionUtil.establishConnection();
+                    Statement statement = connection.createStatement();
+                    statement.execute("insert into price_history (ticker, date, price) values ('" + ticker + "', '" + date + "', '" + close + "'" + ")");
+                    statement.close();
+                    connection.close();
+                } catch (Exception e)
+                {
+
+                }
+            }
+
+            response = true;
+        }
+        return response;
     }
 }

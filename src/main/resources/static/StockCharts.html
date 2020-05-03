@@ -3,19 +3,34 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript">
+
+      function getParameterByName(name, url)
+      {
+          if (!url) url = window.location.href;
+          name = name.replace(/[\[\]]/g, '\\$&');
+          var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+              results = regex.exec(url);
+          if (!results) return null;
+          if (!results[2]) return '';
+          return decodeURIComponent(results[2].replace(/\+/g, ' '));
+      }
+
+      var URL = "http://ec2-54-188-97-114.us-west-2.compute.amazonaws.com:8080";
+      var ticker = getParameterByName('ticker');
+
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart()
       {
         var jsonData = $.ajax({
-          url: "http://ec2-34-208-229-103.us-west-2.compute.amazonaws.com:8080/priceHistory/AMZN",
+          url: URL + "/priceHistory/" + ticker,
           dataType: "json",
           async: false
           }).responseJSON;
 
         var jsonData1 = $.ajax({
-          url: "http://ec2-34-208-229-103.us-west-2.compute.amazonaws.com:8080/purchaseHistory/AMZN",
+          url: URL + "/purchaseHistory/" + ticker,
           dataType: "json",
           async: false
           }).responseJSON;
@@ -39,7 +54,7 @@
 
                 if (jsonData1.includes(date))
                 {
-                  element.push('point {size: 18; shape-type: star; fill-color: #a52714;}');
+                  element.push('point {size: 6; dataOpacity:1; shape-type: square; fill-color: #FF6600;}');
                 }
                 else
                 {
@@ -53,8 +68,8 @@
 
         var options = {
           curveType: 'function',
-          pointSize: 7,
-          dataOpacity: 0.3
+          pointSize: 4,
+          dataOpacity: 0.5
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
