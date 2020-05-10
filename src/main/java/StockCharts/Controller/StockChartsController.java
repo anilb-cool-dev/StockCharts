@@ -27,7 +27,7 @@ public class StockChartsController
     @RequestMapping("/priceHistory/{ticker}")
     public ResponseEntity<ArrayList> priceHistory(@PathVariable String ticker)
     {
-        ArrayList prices = service.getPrices(ticker);
+        ArrayList prices = (ArrayList)service.getPrices(ticker);
 
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "*");
@@ -38,7 +38,7 @@ public class StockChartsController
     @RequestMapping("/purchaseHistory/{ticker}")
     public ResponseEntity<ArrayList> purchaseHistory(@PathVariable String ticker)
     {
-        ArrayList purchases = service.getPurchases(ticker);
+        ArrayList purchases = (ArrayList)service.getPurchases(ticker);
 
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "*");
