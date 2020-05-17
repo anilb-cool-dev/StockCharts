@@ -1,14 +1,13 @@
 package StockCharts.Controller;
 
+import StockCharts.Model.PurchaseHistory;
 import StockCharts.Service.StockChartsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -44,6 +43,19 @@ public class StockChartsController
         headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "*");
 
         return new ResponseEntity<>(purchases, headers, HttpStatus.OK);
+    }
+
+    @PostMapping("/purchaseHistory/{ticker}")
+    public ResponseEntity<PurchaseHistory> newPurchaseHistory(@PathVariable String ticker, @RequestBody PurchaseHistory newPurchaseHistory)
+    {
+        String date = newPurchaseHistory.getDate();
+
+        System.out.println(date);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "*");
+
+        return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
     @RequestMapping("/refresh/{ticker}")
