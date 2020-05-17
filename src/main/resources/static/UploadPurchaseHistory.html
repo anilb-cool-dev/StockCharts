@@ -17,6 +17,7 @@
 <pre id="jsonData"></pre>
 </body>
 <script>
+    var URL = "http://ec2-54-149-128-99.us-west-2.compute.amazonaws.com:8080";
     var selectedFile;
     document
       .getElementById("fileUpload")
@@ -45,7 +46,7 @@
               {
                   console.log(myArr[i]);
                   const XHR = new XMLHttpRequest();
-                  XHR.open('POST', 'http://localhost:8080/purchaseHistory/AMZN');
+                  XHR.open('POST', URL + '/purchaseHistory/AMZN');
                   XHR.setRequestHeader( 'Content-Type', 'application/json' );
 
                   XHR.addEventListener('load', function(event) {
@@ -57,7 +58,6 @@
                   } );
 
                   XHR.send(JSON.stringify(myArr[i]));
-                  //XHR.send('{"date":"01/02/2020"}');
               }
             });
           };

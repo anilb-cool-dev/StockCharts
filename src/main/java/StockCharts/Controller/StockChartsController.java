@@ -50,7 +50,7 @@ public class StockChartsController
     {
         String date = newPurchaseHistory.getDate();
 
-        System.out.println(date);
+        service.recordPurchase(ticker, date);
 
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "*");

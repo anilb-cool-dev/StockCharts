@@ -29,6 +29,11 @@ public class StockChartsService
         return purchases;
     }
 
+    public void recordPurchase(String ticker, String date)
+    {
+        dao.recordPurchase(ticker, date);
+    }
+
     public boolean refresh(String ticker)
     {
         boolean response = false;

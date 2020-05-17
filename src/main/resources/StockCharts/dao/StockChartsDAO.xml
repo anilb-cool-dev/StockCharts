@@ -22,6 +22,10 @@
         order by date
     </select>
 
+    <insert id="recordPurchase" parameterType="java.util.Map">
+        insert into purchase_history (ticker, date) values (#{ticker}, #{date})
+    </insert>
+
     <insert id="setPriceHistory" parameterType="java.util.Map">
         insert into price_history (ticker, date, price) values (#{ticker}, #{date}, #{price})
     </insert>

@@ -13,5 +13,7 @@ public interface StockChartsDAO
 
     List<String> getPurchaseHistory(@Param("ticker") String ticker);
 
+    void recordPurchase(String ticker, String date);
+
     void setPriceHistory(@Param("ticker") String ticker, @Param("date") String date, @Param("price") String price);
 }
