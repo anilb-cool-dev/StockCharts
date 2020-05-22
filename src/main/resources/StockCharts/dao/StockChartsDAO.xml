@@ -29,4 +29,12 @@
     <insert id="setPriceHistory" parameterType="java.util.Map">
         insert into price_history (ticker, date, price) values (#{ticker}, #{date}, #{price})
     </insert>
+
+    <delete id="resetPriceHistory">
+        delete from price_history
+    </delete>
+
+    <delete id="resetPurchaseHistory">
+        delete from purchase_history
+    </delete>
 </mapper>

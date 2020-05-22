@@ -2,20 +2,8 @@
   <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="common.js"></script>
     <script type="text/javascript">
-
-      function getParameterByName(name, url)
-      {
-          if (!url) url = window.location.href;
-          name = name.replace(/[\[\]]/g, '\\$&');
-          var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-              results = regex.exec(url);
-          if (!results) return null;
-          if (!results[2]) return '';
-          return decodeURIComponent(results[2].replace(/\+/g, ' '));
-      }
-
-      var URL = "http://ec2-35-162-58-148.us-west-2.compute.amazonaws.com:8080";
       var ticker = getParameterByName('ticker');
 
       google.charts.load('current', {'packages':['corechart']});
@@ -24,13 +12,13 @@
       function drawChart()
       {
         var jsonData = $.ajax({
-          url: URL + "/priceHistory/" + ticker,
+          url: baseURL + "/priceHistory/" + ticker,
           dataType: "json",
           async: false
           }).responseJSON;
 
         var jsonData1 = $.ajax({
-          url: URL + "/purchaseHistory/" + ticker,
+          url: baseURL + "/purchaseHistory/" + ticker,
           dataType: "json",
           async: false
           }).responseJSON;
@@ -49,12 +37,11 @@
 
                 var date = jsonData[index].date;
                 element.push(date);
-
                 element.push(jsonData[index].price);
 
                 if (jsonData1.includes(date))
                 {
-                  element.push('point {size: 6; dataOpacity:1; shape-type: square; fill-color: #FF6600;}');
+                  element.push('point {size: 10; dataOpacity:1; shape-type: square; fill-color: #FF6600;}');
                 }
                 else
                 {

@@ -1,18 +1,16 @@
 package StockCharts.Model;
 
-import java.util.Date;
-
 public class Price
 {
-    public Date date;
+    public String date;
     public double price;
 
-    public Date getDate()
+    public String getDate()
     {
         return date;
     }
 
-    public void setDate(Date date)
+    public void setDate(String date)
     {
         this.date = date;
     }

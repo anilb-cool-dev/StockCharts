@@ -56,4 +56,10 @@ public class StockChartsService
         }
         return response;
     }
+
+    public void reset()
+    {
+        dao.resetPriceHistory();
+        dao.resetPurchaseHistory();
+    }
 }

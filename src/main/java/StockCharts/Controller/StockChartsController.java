@@ -65,4 +65,11 @@ public class StockChartsController
 
         return ResponseEntity.ok(Boolean.valueOf(status));
     }
+
+    @RequestMapping("/reset")
+    public ResponseEntity<Boolean> reset()
+    {
+        service.reset();
+        return ResponseEntity.ok(true);
+    }
 }
