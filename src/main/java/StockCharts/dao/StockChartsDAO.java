@@ -11,13 +11,17 @@ public interface StockChartsDAO
 {
     List<Price> getPriceHistory(@Param("ticker") String ticker);
 
+    Integer priceCount(@Param("ticker") String ticker, @Param("date") String date);
+
     List<String> getPurchaseHistory(@Param("ticker") String ticker);
 
     void recordPurchase(String ticker, String date);
 
     void setPriceHistory(@Param("ticker") String ticker, @Param("date") String date, @Param("price") String price);
 
-    void resetPriceHistory();
+    void resetPriceHistory(@Param("ticker") String ticker);
 
-    void resetPurchaseHistory();
+    void resetPurchaseHistory(@Param("ticker") String ticker);
+
+    List<String> getTickers();
 }

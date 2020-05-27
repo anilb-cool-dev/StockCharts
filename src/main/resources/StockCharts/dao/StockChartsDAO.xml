@@ -15,6 +15,13 @@
         order by date
     </select>
 
+    <select id="priceCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(1)
+        from price_history
+        where ticker = #{ticker}
+        and date = #{date}
+    </select>
+
     <select id="getPurchaseHistory" parameterType="String" resultType="java.lang.String">
         select date
         from purchase_history
@@ -30,11 +37,15 @@
         insert into price_history (ticker, date, price) values (#{ticker}, #{date}, #{price})
     </insert>
 
-    <delete id="resetPriceHistory">
-        delete from price_history
+    <delete id="resetPriceHistory" parameterType="String">
+        delete from price_history where ticker = #{ticker}
     </delete>
 
-    <delete id="resetPurchaseHistory">
-        delete from purchase_history
+    <delete id="resetPurchaseHistory" parameterType="String">
+        delete from purchase_history where ticker = #{ticker}
     </delete>
+
+    <select id="getTickers" resultType="java.lang.String">
+        select ticker from tickers
+    </select>
 </mapper>

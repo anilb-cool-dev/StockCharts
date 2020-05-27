@@ -31,7 +31,12 @@ public class StockChartsService
 
     public void recordPurchase(String ticker, String date)
     {
-        dao.recordPurchase(ticker, date);
+        List<String> tickers = dao.getTickers();
+
+        if (tickers.contains(ticker))
+        {
+            dao.recordPurchase(ticker, date);
+        }
     }
 
     public boolean refresh(String ticker)
@@ -42,14 +47,17 @@ public class StockChartsService
 
         StockPriceAPIResponse stockPriceAPIResponse = restTemplate.getForObject(url, StockPriceAPIResponse.class, ticker);
 
-        if (stockPriceAPIResponse != null)
+        if (stockPriceAPIResponse != null && stockPriceAPIResponse.getTimeSeriesDaily() != null)
         {
             for (Map.Entry<String, Object> entry : stockPriceAPIResponse.getTimeSeriesDaily().getAdditionalProperties().entrySet())
             {
                 String date = entry.getKey();
                 Map map = (Map) entry.getValue();
                 String price = (String) map.get("4. close");
-                dao.setPriceHistory(ticker, date, price);
+                if (dao.priceCount(ticker, date) == 0)
+                {
+                    dao.setPriceHistory(ticker, date, price);
+                }
             }
 
             response = true;
@@ -57,9 +65,43 @@ public class StockChartsService
         return response;
     }
 
+    public boolean refreshAll()
+    {
+        int count = 0;
+        List<String> tickers = dao.getTickers();
+        for(String ticker : tickers)
+        {
+            refresh(ticker);
+            count++;
+            if (count == 5)
+            {
+                try
+                {
+                    Thread.sleep(60000);
+                }
+                catch(Exception e)
+                {}
+                count = 0;
+            }
+        }
+        return true;
+    }
+
     public void reset()
     {
-        dao.resetPriceHistory();
-        dao.resetPurchaseHistory();
+        List<String> tickers = dao.getTickers();
+
+        for (String ticker : tickers)
+        {
+
+            dao.resetPriceHistory(ticker);
+            dao.resetPurchaseHistory(ticker);
+        }
+    }
+
+    public void reset(String ticker)
+    {
+        dao.resetPriceHistory(ticker);
+        dao.resetPurchaseHistory(ticker);
     }
 }

@@ -9,7 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 @RestController
 public class StockChartsController
@@ -50,7 +52,15 @@ public class StockChartsController
     {
         String date = newPurchaseHistory.getDate();
 
-        service.recordPurchase(ticker, date);
+        try
+        {
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+            Date date1 = df.parse(date);
+            String date2 = df.format(date1);
+            service.recordPurchase(ticker, date2);
+        }
+        catch(Exception e)
+        {}
 
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "*");
@@ -66,10 +76,25 @@ public class StockChartsController
         return ResponseEntity.ok(Boolean.valueOf(status));
     }
 
-    @RequestMapping("/reset")
+    @RequestMapping("/refreshAll")
+    public ResponseEntity<Boolean> refresh()
+    {
+        boolean status = service.refreshAll();
+
+        return ResponseEntity.ok(Boolean.valueOf(status));
+    }
+
+    @RequestMapping("/resetAll")
     public ResponseEntity<Boolean> reset()
     {
         service.reset();
+        return ResponseEntity.ok(true);
+    }
+
+    @RequestMapping("/reset/{ticker}")
+    public ResponseEntity<Boolean> reset(@PathVariable String ticker)
+    {
+        service.reset(ticker);
         return ResponseEntity.ok(true);
     }
 }

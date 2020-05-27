@@ -1,4 +1,5 @@
-  var baseURL = "http://ec2-54-186-180-97.us-west-2.compute.amazonaws.com:8080";
+  var baseURL = "http://ec2-18-237-78-90.us-west-2.compute.amazonaws.com:8080";
+//var baseURL = "http://localhost:8080";
 
   function getParameterByName(name, url)
   {
