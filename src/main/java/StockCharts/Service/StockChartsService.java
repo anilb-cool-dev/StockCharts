@@ -17,6 +17,12 @@ public class StockChartsService
 
     static String url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={ticker}&apikey=8AA2U02KXGQDXKB2";
 
+    public List getTickers()
+    {
+        List<String> tickers = dao.getTickers();
+        return tickers;
+    }
+
     public List getPrices(String ticker)
     {
         List<Price> prices = dao.getPriceHistory(ticker);

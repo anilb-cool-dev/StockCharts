@@ -25,6 +25,17 @@ public class StockChartsController
         return "index";
     }
 
+    @RequestMapping("/tickers")
+    public ResponseEntity<ArrayList> tickers()
+    {
+        ArrayList tickers = (ArrayList)service.getTickers();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "*");
+
+        return new ResponseEntity<>(tickers, headers, HttpStatus.OK);
+    }
+
     @RequestMapping("/priceHistory/{ticker}")
     public ResponseEntity<ArrayList> priceHistory(@PathVariable String ticker)
     {
