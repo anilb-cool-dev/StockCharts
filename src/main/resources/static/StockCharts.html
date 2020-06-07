@@ -1,33 +1,13 @@
- <html>
+<html>
   <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="common.js"></script>
     <script type="text/javascript">
-      var ticker = getParameterByName('ticker');
+      var selTicker;
 
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
-
-      function readyFn()
-      {
-        var jsonTickers = $.ajax({
-          url: baseURL + "/tickers",
-          dataType: "json",
-          async: false
-          }).responseJSON;
-
-        let dropdown = document.getElementById('tickers');
-
-        for (var index=0; index < jsonTickers.length; index++)
-        {
-           var ticker = jsonTickers[index];
-           option = document.createElement('option');
-           option.text = ticker;
-           option.value = ticker;
-           dropdown.add(option);
-        }
-      }
 
       function drawChart()
       {
@@ -87,6 +67,31 @@
       function onTickerChange(selOption)
       {
         ticker = selOption;
+        drawChart();
+      }
+
+      function readyFn()
+      {
+        var jsonTickers = $.ajax({
+          url: baseURL + "/tickers",
+          dataType: "json",
+          async: false
+          }).responseJSON;
+
+        let dropdown = document.getElementById('tickers');
+
+        for (var index=0; index < jsonTickers.length; index++)
+        {
+           var ticker = jsonTickers[index];
+
+           if (index == 0) selTicker = ticker;
+
+           option = document.createElement('option');
+           option.text = ticker;
+           option.value = ticker;
+           dropdown.add(option);
+        }
+
         drawChart();
       }
     </script>
