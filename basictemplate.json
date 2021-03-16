@@ -3,10 +3,13 @@
 
   "Description" : "basic template",
 
-  "Resources" : {
-    "Ec2Instance" : {
+  "Resources" : 
+  {
+    "Ec2Instance" : 
+    {
       "Type" : "AWS::EC2::Instance",
-      "Properties" : {
+      "Properties" : 
+      {
         "ImageId" : "ami-0e999cbd62129e3b1",
 	"SubnetId" : "subnet-0cbd6edb87f588a5e",
 	"InstanceType" : "t2.micro",
