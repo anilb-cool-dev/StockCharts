@@ -11,3 +11,5 @@ Roadmap
 7. Load test using gatling and jmeter
 8. Unit tests with mocks
 9. Mobile app
+
+Access using : http://www.mystockpurchases.com:8080/StockCharts.html
