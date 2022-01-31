@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "AWS CloudFormation Sample Template for creating an Amazon RDS DB instance: Sample template showing how to create a DB instance with Enhanced Monitoring enabled. **WARNING** This template creates an RDS DB instance. You will be billed for the AWS resources used if you create a stack from this template.",
+  "Description": "aws cloudformation deploy --template-file RDSDBCreate.json --stack-name myrdsstack",
   "Parameters": {
     "DBInstanceID": {
       "Default": "mydbinstance",
