@@ -16,7 +16,8 @@ I am using JAVA springboot for my business logic tier. The backend data storage 
 Here are some of the aspirational TODO items. These are primariliy because I want to play around with these
 
 1. SSL
-2. AWS secrets
+2. Use github actions for CI/CD
+3. AWS secrets
 4. Cron job to update price history
 5. Multi user support
 6. Unit tests with mocks
