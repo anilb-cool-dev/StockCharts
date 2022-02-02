@@ -10,6 +10,9 @@ This used to be a feature in MSN Investor long time ago when it was alive. I use
 
 I am using JAVA springboot for my business logic tier. The backend data storage is MySQL. I am using google charts for charting and jquery for UI rendering. I am deploying it to AWS. I added Redis (Elasticache) to cache the ticker symbols. Although, is is miniscule amount of data, it will come in handy if/when I decide to add multi-user support & open it to others to use.
 
+# Architecture block diagram
+
+# TODO
 Here are some of the aspirational TODO items. These are primariliy because I want to play around with these
 
 1. SSL
