@@ -4,7 +4,7 @@ StockCharts is a tool to show purchase price of a stock relative to its price hi
 
 It looks like I bought units of VNQ always when it was near low. This makes me feel alright since most of my purchases are at relatively lower price
 
-<img width="708" alt="image" src="https://user-images.githubusercontent.com/17423724/152484321-5dca79e5-c63c-4d10-8fc1-0b8a4531e78f.png">
+<img width="744" alt="image" src="https://user-images.githubusercontent.com/17423724/152708370-1cce792c-71f6-4308-bd2f-174b601341a4.png">
 
 But look at my purchasing history for ARKF. What was I thinking?
 
