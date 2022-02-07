@@ -16,6 +16,8 @@ I am using JAVA springboot for my business logic tier. The backend data storage 
 
 # Architecture block diagram
 
+<img width="446" alt="image" src="https://user-images.githubusercontent.com/17423724/152709954-97f56130-32eb-4acf-b878-4be14bb30e49.png">
+
 # TODO
 Here are some of the aspirational TODO items. These are primariliy because I want to play around with these
 
