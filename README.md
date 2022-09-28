@@ -31,4 +31,4 @@ Here are some of the aspirational TODO items. These are primariliy because I wan
 8. Load test using gatling and jmeter
 9. Mobile app
 
-Access using : http://www.mystockpurchases.com:8080/StockCharts.html
+Access using : http://www.mystockpurchases.com/StockCharts.html
