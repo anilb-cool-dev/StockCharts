@@ -10,10 +10,11 @@
       "Type" : "AWS::EC2::Instance",
       "Properties" : 
       {
-        "ImageId" : "ami-026b57f3c383c2eec",
-	"SubnetId" : "subnet-0cbd6edb87f588a5e",
-	"InstanceType" : "t2.micro",
-	"KeyName" : "mykeypair10052022"
+        "Name" : "MyDevBox"
+		"ImageId" : "ami-08e2d37b6a0129927",
+		"SubnetId" : "subnet-0cbd6edb87f588a5e",
+		"InstanceType" : "t2.micro",
+		"KeyName" : "mykeypair03012020"
       }
     }
   }

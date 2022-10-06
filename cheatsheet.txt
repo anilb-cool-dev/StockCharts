@@ -30,6 +30,11 @@ Go to Control Panel > User Accounts > Credential Manager > Windows Credentials. 
 
 =========================================
 
+How to discard local changes in git
+git reset –hard
+
+=========================================
+
 How do I install git?
 
 sudo yum install git
@@ -219,3 +224,5 @@ aws rds stop-db-instance --db-instance-identifier database-1
 
 aws ec2 describe-instances --instance-ids i-04c3655917ca73ef7 --region us-west-2
 http://34.209.38.185:8080/
+
+aws cloudformation deploy --template-file SpinupEC2.json --stack-name SpinupEC2
