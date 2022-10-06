@@ -10,10 +10,10 @@
       "Type" : "AWS::EC2::Instance",
       "Properties" : 
       {
-        "ImageId" : "ami-0e999cbd62129e3b1",
+        "ImageId" : "ami-026b57f3c383c2eec",
 	"SubnetId" : "subnet-0cbd6edb87f588a5e",
 	"InstanceType" : "t2.micro",
-	"KeyName" : "mykeypair03012020"
+	"KeyName" : "mykeypair10052022"
       }
     }
   }
