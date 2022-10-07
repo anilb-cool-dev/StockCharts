@@ -13,7 +13,10 @@
 "ImageId" : "ami-08e2d37b6a0129927",
 "SubnetId" : "subnet-0cbd6edb87f588a5e",
 "InstanceType" : "t2.micro",
-"KeyName" : "mykeypair03012020"
+"KeyName" : "mykeypair03012020",
+"UserData" : {
+       "Fn::Base64" : "#!/bin/bash\ntouch /home/ec2-user/log1.txt"
+}
       }
     }
   }
