@@ -226,3 +226,4 @@ aws ec2 describe-instances --instance-ids i-04c3655917ca73ef7 --region us-west-2
 http://34.209.38.185:8080/
 
 aws cloudformation deploy --template-file SpinupEC2.json --stack-name SpinupEC2
+aws cloudformation delete-stack --stack-name SpinupEC2
