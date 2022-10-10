@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "aws cloudformation deploy --template-file RDSDBCreate.json --stack-name myrdsstack",
+  "Description": "aws cloudformation create-stack --stack-name myrdsstack --template-body file://RDSDBCreate.json --parameters ParameterKey=DBUsername,ParameterValue=admin ParameterKey=DBPassword,ParameterValue=admin123",
   "Parameters": {
     "DBInstanceID": {
       "Default": "mydbinstance",

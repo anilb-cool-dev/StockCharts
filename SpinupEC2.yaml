@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion : '2010-09-09'
+Description : 'aws cloudformation create-stack --stack-name SpinupEC2 --template-body file://SpinupEC2.yaml'
+
+Resources :
+    DemoInstance :
+        Type : 'AWS::EC2::Instance'
+        Properties :
+            ImageId : 'ami-08e2d37b6a0129927'
+            InstanceType : 't2.micro'
+            KeyName : 'mykeypair03012020'
+            SubnetId : 'subnet-0cbd6edb87f588a5e'
+            UserData :
+                Fn::Base64:
+                    !Sub |
+                        #!/bin/bash
+                        cd /home/ec2-user
+                        mkdir java
+                        mkdir java/stockcharts
+                        cd java/stockcharts
+                        sudo yum install -y git
+                        git clone https://github.com/anilb-cool-dev/StockCharts .
+                        sudo amazon-linux-extras install -y java-openjdk11
+                        sudo amazon-linux-extras install -y tomcat9
+                        sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+                        sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
+                        sudo yum install -y apache-maven
+                        mvn package
+                        sudo systemctl daemon-reload
+                        sudo systemctl start tomcat
+                        sudo systemctl enable tomcat
+                        

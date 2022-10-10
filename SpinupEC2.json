@@ -14,9 +14,7 @@
 "SubnetId" : "subnet-0cbd6edb87f588a5e",
 "InstanceType" : "t2.micro",
 "KeyName" : "mykeypair03012020",
-"UserData" : {
-       "Fn::Base64" : "#!/bin/bash\ntouch /home/ec2-user/log1.txt"
-}
+"UserData" : "bWtkaXIgamF2YQpta2RpciBqYXZhL3N0b2NrY2hhcnRzCg=="
       }
     }
   }
