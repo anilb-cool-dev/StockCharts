@@ -17,6 +17,10 @@ C:\>pscp -P 22 -i "C:\Users\anilb\Desktop\Tech\AWS Keys\MyLinuxBuildEnv.ppk" c:\
 c:>pscp -P 22 -i "c:\pem\mykeypair03012020.ppk" target\StockCharts-0.1.0.jar ec2-user@34.209.38.185:/home/ec2-user/StockCharts-0.1.0.jar
 
 =========================================
+Using PuTTy command line
+putty -ssh ec2-user@35.86.84.17 -i C:\dev\PPK\mykeypair03012020.ppk
+
+=========================================
 
 Download git for windows
 
