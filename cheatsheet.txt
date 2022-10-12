@@ -232,3 +232,10 @@ http://34.209.38.185:8080/
 
 aws cloudformation deploy --template-file SpinupEC2.json --stack-name SpinupEC2
 aws cloudformation delete-stack --stack-name SpinupEC2
+
+==============================
+How to provision StockCharts application
+1. aws cloudformation create-stack --stack-name myrdsstack --template-body file://RDSDBCreate.json --parameters ParameterKey=DBUsername,ParameterValue=admin ParameterKey=DBPassword,ParameterValue=admin123
+2. aws cloudformation create-stack --stack-name SpinupEC2 --template-body file://SpinupEC2.yaml
+3. From EC2 instance, run the shell script ConfigEC2.sh and pass parameters for dbinstance dbname dbuserid dbpassword
+4. hit http://www.mystockpurchases.com:8080/StockCharts.html
