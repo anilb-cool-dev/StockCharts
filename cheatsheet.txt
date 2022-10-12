@@ -235,7 +235,10 @@ aws cloudformation delete-stack --stack-name SpinupEC2
 
 ==============================
 How to provision StockCharts application
-1. aws cloudformation create-stack --stack-name myrdsstack --template-body file://RDSDBCreate.json --parameters ParameterKey=DBUsername,ParameterValue=admin ParameterKey=DBPassword,ParameterValue=admin123
+1. aws cloudformation create-stack --stack-name SpinupRDS --template-body file://RDSDBCreate.json --parameters ParameterKey=DBUsername,ParameterValue=admin ParameterKey=DBPassword,ParameterValue=admin123
 2. aws cloudformation create-stack --stack-name SpinupEC2 --template-body file://SpinupEC2.yaml
 3. From EC2 instance, run the shell script ConfigEC2.sh and pass parameters for dbinstance dbname dbuserid dbpassword
-4. hit http://www.mystockpurchases.com:8080/StockCharts.html
+4. mysql -h mydbinstance.cdtxxj0td5de.us-west-2.rds.amazonaws.com -u admin -p mydb < database/schema.sql
+5. mysql -h mydbinstance.cdtxxj0td5de.us-west-2.rds.amazonaws.com -u admin -p mydb < database/seed_data.sql
+6. java -jar target/StockCharts.jar
+6. hit http://www.mystockpurchases.com:8080/StockCharts.html

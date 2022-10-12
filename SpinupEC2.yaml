@@ -23,9 +23,11 @@ Resources :
                         sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
                         sudo yum install -y apache-maven
                         sudo yum install -y mysql
-                        mkdir -m777 java
-                        mkdir -m777 java/stockcharts
-                        cd java/stockcharts
-                        git clone https://github.com/anilb-cool-dev/StockCharts .
-                        mvn package
-                        
+                        echo '#!/bin/sh' > config.sh
+                        echo 'export dbinstance=$1 dbname=$2 dbuserid=$3 dbpassword=$4' >> config.sh
+                        echo 'mkdir java' >> config.sh
+                        echo 'mkdir java/stockcharts' >> config.sh
+                        echo 'cd java/stockcharts' >> config.sh
+                        echo 'git clone https://github.com/anilb-cool-dev/StockCharts .' >> config.sh
+                        echo 'mvn package' >> config.sh
+                        chmod a=rwx config.sh
