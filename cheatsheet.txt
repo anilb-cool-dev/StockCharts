@@ -140,6 +140,7 @@ to set use export command. E.g. export JAVA_HOME=$HOME/jdk1.8.0_241
 How to swith to get root access?
 
 sudo su
+to go back to previous user, type exit at the prompt
 
 =========================================
 
@@ -237,8 +238,10 @@ aws cloudformation delete-stack --stack-name SpinupEC2
 How to provision StockCharts application
 1. aws cloudformation create-stack --stack-name SpinupRDS --template-body file://RDSDBCreate.json --parameters ParameterKey=DBUsername,ParameterValue=admin ParameterKey=DBPassword,ParameterValue=admin123
 2. aws cloudformation create-stack --stack-name SpinupEC2 --template-body file://SpinupEC2.yaml
-3. From EC2 instance, run the shell script ConfigEC2.sh and pass parameters for dbinstance dbname dbuserid dbpassword
-4. mysql -h mydbinstance.cdtxxj0td5de.us-west-2.rds.amazonaws.com -u admin -p mydb < database/schema.sql
-5. mysql -h mydbinstance.cdtxxj0td5de.us-west-2.rds.amazonaws.com -u admin -p mydb < database/seed_data.sql
-6. java -jar target/StockCharts.jar
+3. From EC2 instance, run the shell script config.sh and pass parameters for dbinstance dbname dbuserid dbpassword 
+	a. putty -ssh ec2-user@35.86.84.17 -i C:\dev\PPK\mykeypair03012020.ppk
+	b. . ./config.sh
+4. mysql -h $dbinstance -u $dbuserid -p $dbname < database/schema.sql
+5. mysql -h $dbinstance -u $dbuserid -p $dbname < database/seed_data.sql
+6. java -jar target/StockCharts-0.1.0.jar
 6. hit http://www.mystockpurchases.com:8080/StockCharts.html
