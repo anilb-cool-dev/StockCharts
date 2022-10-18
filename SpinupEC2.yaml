@@ -16,6 +16,7 @@ Resources :
                 Fn::Base64:
                     !Sub |
                         #!/bin/bash
+                        sudo yum -y update
                         sudo yum install -y git
                         cd /home/ec2-user
                         sudo amazon-linux-extras install -y java-openjdk11
@@ -25,6 +26,7 @@ Resources :
                         sudo yum install -y mysql
                         sudo yum install -y docker
                         sudo service docker restart
+                        sudo usermod -a -G docker $USER
                         iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8080
                         echo '#!/bin/sh' > config.sh
                         echo 'export dbinstance=$1 dbname=$2 dbuserid=$3 dbpassword=$4' >> config.sh

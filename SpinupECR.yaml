@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Elastic Container Registory Repository using Cloudformation
+
+#------------------------
+#   RESOURCES
+#------------------------ 
+Resources:
+  ecrRepo:
+    Type: AWS::ECR::Repository
+    Properties: 
+      RepositoryName: stockcharts
+      ImageScanningConfiguration: 
+        ScanOnPush: true

@@ -238,10 +238,22 @@ aws cloudformation delete-stack --stack-name SpinupEC2
 How to provision StockCharts application
 1. aws cloudformation create-stack --stack-name SpinupRDS --template-body file://RDSDBCreate.json --parameters ParameterKey=DBUsername,ParameterValue=admin ParameterKey=DBPassword,ParameterValue=admin123
 2. aws cloudformation create-stack --stack-name SpinupEC2 --template-body file://SpinupEC2.yaml
-3. From EC2 instance, run the shell script config.sh and pass parameters for dbinstance dbname dbuserid dbpassword 
+3. aws cloudformation create-stack --stack-name SpinupECR --template-body file://SpinupECR.yaml
+4. From EC2 instance, run the shell script config.sh and pass parameters for dbinstance dbname dbuserid dbpassword 
 	a. putty -ssh ec2-user@35.86.84.17 -i C:\dev\PPK\mykeypair03012020.ppk
 	b. . ./config.sh
-4. mysql -h $dbinstance -u $dbuserid -p $dbname < database/schema.sql
-5. mysql -h $dbinstance -u $dbuserid -p $dbname < database/seed_data.sql
-6. java -jar target/StockCharts-0.1.0.jar
-6. hit http://www.mystockpurchases.com/StockCharts.html
+5. mysql -h $dbinstance -u $dbuserid -p $dbname < database/schema.sql
+6. mysql -h $dbinstance -u $dbuserid -p $dbname < database/seed_data.sql
+7a. java -jar target/StockCharts-0.1.0.jar
+OR
+7b. 
+aws configure
+aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 594359759417.dkr.ecr.us-west-2.amazonaws.com
+docker build -t stockcharts:latest .
+docker tag stockcharts:latest 594359759417.dkr.ecr.us-west-2.amazonaws.com/stockcharts:latest
+docker push 594359759417.dkr.ecr.us-west-2.amazonaws.com/stockcharts:latest
+docker run -p 8080:8080 594359759417.dkr.ecr.us-west-2.amazonaws.com/stockcharts:latest
+8. hit http://www.mystockpurchases.com/StockCharts.html
+9. aws cloudformation delete-stack --stack-name SpinupEC2
+10. aws cloudformation delete-stack --stack-name SpinupRDS
+11. aws cloudformation delete-stack --stack-name SpinupECR
