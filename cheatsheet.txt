@@ -246,7 +246,8 @@ How to provision StockCharts application
 6. mysql -h $dbinstance -u $dbuserid -p $dbname < database/seed_data.sql
 7a. java -jar target/StockCharts-0.1.0.jar
 OR
-7b. 
+7b.
+exit
 docker build -t stockcharts:latest .
 aws configure
 aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 594359759417.dkr.ecr.us-west-2.amazonaws.com
