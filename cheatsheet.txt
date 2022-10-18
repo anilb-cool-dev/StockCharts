@@ -244,4 +244,4 @@ How to provision StockCharts application
 4. mysql -h $dbinstance -u $dbuserid -p $dbname < database/schema.sql
 5. mysql -h $dbinstance -u $dbuserid -p $dbname < database/seed_data.sql
 6. java -jar target/StockCharts-0.1.0.jar
-6. hit http://www.mystockpurchases.com:8080/StockCharts.html
+6. hit http://www.mystockpurchases.com/StockCharts.html

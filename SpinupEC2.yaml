@@ -23,6 +23,8 @@ Resources :
                         sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
                         sudo yum install -y apache-maven
                         sudo yum install -y mysql
+                        sudo yum install -y docker
+                        sudo service docker restart
                         iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8080
                         echo '#!/bin/sh' > config.sh
                         echo 'export dbinstance=$1 dbname=$2 dbuserid=$3 dbpassword=$4' >> config.sh
