@@ -247,13 +247,13 @@ How to provision StockCharts application
 7a. java -jar target/StockCharts-0.1.0.jar
 OR
 7b. 
+docker build -t stockcharts:latest .
 aws configure
 aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 594359759417.dkr.ecr.us-west-2.amazonaws.com
-docker build -t stockcharts:latest .
 docker tag stockcharts:latest 594359759417.dkr.ecr.us-west-2.amazonaws.com/stockcharts:latest
 docker push 594359759417.dkr.ecr.us-west-2.amazonaws.com/stockcharts:latest
 docker run -p 8080:8080 594359759417.dkr.ecr.us-west-2.amazonaws.com/stockcharts:latest
 8. hit http://www.mystockpurchases.com/StockCharts.html
-9. aws cloudformation delete-stack --stack-name SpinupEC2
-10. aws cloudformation delete-stack --stack-name SpinupRDS
-11. aws cloudformation delete-stack --stack-name SpinupECR
+9. aws cloudformation delete-stack --stack-name SpinupECR
+10. aws cloudformation delete-stack --stack-name SpinupEC2
+11. aws cloudformation delete-stack --stack-name SpinupRDS

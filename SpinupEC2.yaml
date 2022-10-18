@@ -26,7 +26,6 @@ Resources :
                         sudo yum install -y mysql
                         sudo yum install -y docker
                         sudo service docker restart
-                        sudo usermod -a -G docker $USER
                         iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8080
                         echo '#!/bin/sh' > config.sh
                         echo 'export dbinstance=$1 dbname=$2 dbuserid=$3 dbpassword=$4' >> config.sh
@@ -35,4 +34,5 @@ Resources :
                         echo 'cd java/stockcharts' >> config.sh
                         echo 'git clone https://github.com/anilb-cool-dev/StockCharts .' >> config.sh
                         echo 'mvn package' >> config.sh
+                        echo 'sudo usermod -a -G docker $USER' >> config.sh
                         chmod a=rwx config.sh
