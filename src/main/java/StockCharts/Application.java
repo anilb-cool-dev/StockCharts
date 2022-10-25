@@ -21,7 +21,7 @@ public class Application
         
         System.out.println("Let's inspect the beans provided by Spring Boot: tada");
         
-        String[] beanNames = ctx.getBeanDefinitionNames();
+        String[] beanNames = ctx.getBeanDefinitionNames()
         Arrays.sort(beanNames);
         for (String beanName : beanNames) {
             System.out.println(beanName);
