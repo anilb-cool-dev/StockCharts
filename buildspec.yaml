@@ -15,5 +15,6 @@ phases:
 artifacts:
   files:
     - target/StockCharts-0.1.0.jar
+    - scripts/*.sh
     - appspec.yml
   discard-paths: yes
