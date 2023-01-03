@@ -9,6 +9,7 @@ Resources :
             InstanceType : 't2.micro'
             KeyName : 'mykeypair03012020'
             SubnetId : 'subnet-0cbd6edb87f588a5e'
+            IamInstanceProfile : 'EC2-role'
             Tags :
                 - Key : 'Name'
                   Value : 'MyDevBox'
@@ -36,3 +37,10 @@ Resources :
                         echo 'mvn package' >> config.sh
                         echo 'sudo usermod -a -G docker $USER' >> config.sh
                         chmod a=rwx config.sh
+                        sudo yum install -y ruby
+                        wget https://aws-codedeploy-us-west-2.s3.us-west-2.amazonaws.com/latest/install
+                        chmod +x ./install
+                        sudo ./install auto
+                        sudo yum install -y python-pip
+                        sudo service codedeploy-agent status
+                        
