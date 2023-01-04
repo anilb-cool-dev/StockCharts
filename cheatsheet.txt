@@ -242,10 +242,11 @@ How to provision StockCharts application
 4. From EC2 instance, run the shell script config.sh
 	a. putty -ssh ec2-user@35.86.84.17 -i C:\dev\PPK\mykeypair03012020.ppk
 	b. . ./config.sh
+	c. from AWS console attach the elastic IP to the EC2 instance
 5. mysql -h $dbinstance -u $dbuserid -p $dbname < database/schema.sql
 6. mysql -h $dbinstance -u $dbuserid -p $dbname < database/seed_data.sql
 7. edit the application.properties in src/main/resources and update the server instance name
-8a. java -jar target/StockCharts-0.1.0.jar
+8a. java -jar target/StockCharts-0.1.0.jar OR let the AWS codepipeline finish
 OR
 8b.
 exit
