@@ -241,7 +241,7 @@ How to provision StockCharts application
 3. aws cloudformation create-stack --stack-name SpinupECR --template-body file://SpinupECR.yaml
 4. From EC2 instance, run the shell script config.sh and pass parameters for dbinstance dbname dbuserid dbpassword 
 	a. putty -ssh ec2-user@35.86.84.17 -i C:\dev\PPK\mykeypair03012020.ppk
-	b. . ./config.sh
+	b. . ./config.sh <instance> mydb admin admin123
 5. mysql -h $dbinstance -u $dbuserid -p $dbname < database/schema.sql
 6. mysql -h $dbinstance -u $dbuserid -p $dbname < database/seed_data.sql
 7a. java -jar target/StockCharts-0.1.0.jar

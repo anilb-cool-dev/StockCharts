@@ -27,9 +27,10 @@ Resources :
                         sudo yum install -y mysql
                         sudo yum install -y docker
                         sudo service docker restart
-                        iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8080
+                        sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8080
                         echo '#!/bin/sh' > config.sh
                         echo 'export dbinstance=$1 dbname=$2 dbuserid=$3 dbpassword=$4' >> config.sh
+                        echo 'export dbinstance=$1 dbname=$2 dbuserid=$3 dbpassword=$4' >> .bashrc
                         echo 'mkdir java' >> config.sh
                         echo 'mkdir java/stockcharts' >> config.sh
                         echo 'cd java/stockcharts' >> config.sh
