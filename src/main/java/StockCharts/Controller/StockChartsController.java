@@ -14,6 +14,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
+
 @RestController
 public class StockChartsController
 {
@@ -25,6 +31,27 @@ public class StockChartsController
     public String index()
     {
         return "index";
+    }
+
+    @RequestMapping(value="/abcd", method=RequestMethod.GET)
+    public String abcd()
+    {
+        String response = "";
+        try {
+            throw new Exception("Exception has occured....");
+        } catch (Exception e) {
+            e.printStackTrace();
+            LOG.error(e);
+
+            StringWriter sw = new StringWriter();
+            PrintWriter pw = new PrintWriter(sw);
+            e.printStackTrace(pw);
+            String stackTrace = sw.toString();
+            LOG.error("Exception - " + stackTrace);
+            response = stackTrace;
+        }
+
+        return response;
     }
 
     @RequestMapping(value="/tickers", method=RequestMethod.GET)
