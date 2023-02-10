@@ -1,5 +1,10 @@
 Cheat sheet
 =================================================================================================
+Setting up laptop for first time
+Setup AWS CLI - https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+Setup git client - https://git-scm.com/download/win
+
+=================================================================================================
 How do I map public domain to AWS?
 
 Go to GoDaddy - open the domain and use public IP of AWS EC2 instance in A record
