@@ -3,6 +3,8 @@ Cheat sheet
 Setting up laptop for first time
 Setup AWS CLI - https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 Setup git client - https://git-scm.com/download/win
+Maven - https://maven.apache.org/download.cgi
+Java - https://www.oracle.com/java/technologies/downloads/
 
 =================================================================================================
 How do I map public domain to AWS?
