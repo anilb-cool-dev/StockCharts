@@ -16,8 +16,6 @@ import java.util.Date;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 
 
 @RestController
@@ -41,13 +39,11 @@ public class StockChartsController
             throw new Exception("Exception has occured....");
         } catch (Exception e) {
             e.printStackTrace();
-            LOG.error(e);
 
             StringWriter sw = new StringWriter();
             PrintWriter pw = new PrintWriter(sw);
             e.printStackTrace(pw);
             String stackTrace = sw.toString();
-            LOG.error("Exception - " + stackTrace);
             response = stackTrace;
         }
 
