@@ -71,7 +71,7 @@
         },
         "Engine": "MySQL",
         "DBSubnetGroupName" : "default-vpc-0c06f5976ad3540ae",
-        "EngineVersion": "8.0.23",
+        "EngineVersion": "8.0.33",
         "MasterUsername": {
           "Ref": "DBUsername"
         },
