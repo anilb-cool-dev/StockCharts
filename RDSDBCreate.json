@@ -21,7 +21,7 @@
       "ConstraintDescription": "Must begin with a letter and contain only alphanumeric characters."
     },
     "DBInstanceClass": {
-      "Default": "db.t2.micro",
+      "Default": "db.t4g.micro",
       "Description": "DB instance class",
       "Type": "String",
       "ConstraintDescription": "Must select a valid DB instance type."
