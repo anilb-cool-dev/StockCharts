@@ -1,4 +1,6 @@
+Prereq : To authenticate in git, use this command : git config --global credential.helper store
 How to provision StockCharts application
+
 1. aws cloudformation create-stack --stack-name SpinupRDS --template-body file://RDSDBCreate.json --parameters ParameterKey=DBUsername,ParameterValue=admin ParameterKey=DBPassword,ParameterValue=admin123
 2. aws cloudformation create-stack --stack-name SpinupEC2 --template-body file://SpinupEC2.yaml
 3. aws cloudformation create-stack --stack-name SpinupECR --template-body file://SpinupECR.yaml
